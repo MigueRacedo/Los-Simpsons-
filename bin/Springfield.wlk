@@ -9,9 +9,10 @@ object springfield {
 	
 	method riquezaDelSuelo() = riquezaDelSuelo
 	method vientos() = vientos
+	method necesidadEnergetica() = necesidadEnergetica
 	
 	method produccionEnergeticaDe(unaCentral) {
-	return unaCentral.energiaProducto()	
+		return unaCentral.energiaProducto()	
 	}
 	
 	method centralesContaminantes(){
@@ -25,5 +26,9 @@ object springfield {
 	method estamosEnElHorno(){
 		return centralesEnergeticas.all({unaCentral => unaCentral.esContaminante()}) || 
 		return (centralesEnergeticas.centralesContaminantes()).sum({unaCentral => unaCentral.energiaProducto()}) >= necesidadEnergetica * 0.5 		
+	}
+	
+	method centralQueMasProduce() {
+		return centralesEnergeticas.max({unaCentral => unaCentral.energiaProducto()})
 	}
 }

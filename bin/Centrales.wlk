@@ -36,8 +36,12 @@ object caExBosque {
 object ceElSuspiro {
 	var lasTurbinas = #{turbina1}
 	
+	method agregarTurbina(turbina) {
+		lasTurbinas.add(turbina)
+	}
+	
 	method energiaProducto() {
-		return lasTurbinas.map({turbina => turbina.produccionDeTurbina()})
+		return lasTurbinas.sum({turbina => turbina.produccionDeTurbina()})
 	}
 	
 	method esContaminante() {
@@ -54,4 +58,7 @@ object turbina1 {
 
 object hidroElectrica {
 	
+	method energiaProducto() {
+		return 2 * albuquerque.caudalDelRio()
+	}
 }
