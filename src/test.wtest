@@ -1,0 +1,51 @@
+import Springfield.*
+import Albuquerque.*
+import Centrales.*
+
+test "burns con 10 varillas produce 1 Mkwh"{
+	
+	caBurns.varillaDeUranio(10)
+	assert.equals(caBurns.energiaProducto(),1)
+}
+
+test "exBosque con una capacidad de 20 toneladas produce 18.5 Mkwh"{
+	
+	caExBosque.toneladasDeCarbon(20)
+	assert.equals(caExBosque.energiaProducto(),18.5)
+}
+
+test "elSuspiro produce 2 Mkwh"{
+	
+	assert.equals(ceElSuspiro.energiaProducto(),2)
+}
+
+test "exBosque es la unica contaminante"{
+	
+	caBurns.varillaDeUranio(10)
+	caExBosque.toneladasDeCarbon(20)
+	assert.equals(springfield.centralesContaminantes(),#{caExBosque})
+}
+
+test "springfield cubrio lo necesario con 20 de necesidad"{
+	
+	caExBosque.toneladasDeCarbon(20)
+	caBurns.varillaDeUranio(10)
+	springfield.necesidadEnergetica(20)
+	assert.equals(springfield.cubrimosLoNecesario(),true)
+}
+
+test "springfield esta en el horno con 30 de necesidad"{
+	
+	caExBosque.toneladasDeCarbon(20)
+	caBurns.varillaDeUranio(10)
+	springfield.necesidadEnergetica(30)
+	assert.equals(springfield.estamosEnElHorno(),true)
+}
+
+test "las centrales que mas producen son exBosque y la hidroelectrica"{
+	
+	caExBosque.toneladasDeCarbon(20)
+	caBurns.varillaDeUranio(10)
+	assert.equals(springfield.centralQueMasProduce(),caExBosque)
+	assert.equals(albuquerque.centralQueMasProduce(),hidroElectrica)
+}

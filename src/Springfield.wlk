@@ -4,12 +4,15 @@ import Albuquerque.*
 object springfield {
 	var vientos = 10
 	var riquezaDelSuelo = 0.9
-	var necesidadEnergetica = 200
+	var necesidadEnergetica
 	var centralesEnergeticas = #{caBurns, caExBosque, ceElSuspiro}
 	
 	method riquezaDelSuelo() = riquezaDelSuelo
 	method vientos() = vientos
-	method necesidadEnergetica() = necesidadEnergetica
+	
+	method necesidadEnergetica(necesidad) {
+		necesidadEnergetica = necesidad
+	}
 	
 	method produccionEnergeticaDe(unaCentral) {
 		return unaCentral.energiaProducto()	
@@ -25,7 +28,7 @@ object springfield {
 	
 	method estamosEnElHorno(){
 		return centralesEnergeticas.all({unaCentral => unaCentral.esContaminante()}) || 
-		return (centralesEnergeticas.centralesContaminantes()).sum({unaCentral => unaCentral.energiaProducto()}) >= necesidadEnergetica * 0.5 		
+		return (centralesEnergeticas.centralesContaminantes()).sum({unaCentral => unaCentral.energiaProducto()}) >= (necesidadEnergetica * 0.5) 		
 	}
 	
 	method centralQueMasProduce() {
