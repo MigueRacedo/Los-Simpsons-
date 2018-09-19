@@ -2,11 +2,8 @@ import Springfield.*
 import Albuquerque.*
 
 object caBurns {
-	var varillaDeUranio
 	
-	method varillaDeUranio(varillas){
-		varillaDeUranio = varillas
-	}
+	var property varillaDeUranio
 	
 	method energiaProducto() {
 		return varillaDeUranio * 0.1
@@ -18,11 +15,8 @@ object caBurns {
 }
 
 object caExBosque {
-	var toneladasDeCarbon
 	
-	method toneladasDeCarbon(tonelada){
-		toneladasDeCarbon = tonelada
-	}
+	var property toneladasDeCarbon
 	
 	method energiaProducto() {
 		return 0.5 + (toneladasDeCarbon * springfield.riquezaDelSuelo()) 
